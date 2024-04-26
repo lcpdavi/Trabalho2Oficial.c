@@ -2,18 +2,18 @@
 #include <stdlib.h>
 #include <math.h>
 
-// Definição da struct Ponto
+// Definicao da struct Ponto
 typedef struct {
     double x;
     double y;
 } Ponto;
 
-// Função para calcular a área de um triângulo
+// Calcular a area de um triângulo
 double AreadoTriangulo(Ponto A, Ponto B, Ponto C) {
     return fabs(0.5 * ((A.x*(B.y-C.y)) + (B.x*(C.y-A.y)) + (C.x*(A.y-B.y))));
 }
 
-// Função para calcular a área de um polígono
+// Calcular a area de um poligono
 double AreadoPoligono(Ponto* vertices, int num_vertices) {
     double area = 0.0;
     for(int i = 0; i < num_vertices-2; i++) {
@@ -22,7 +22,7 @@ double AreadoPoligono(Ponto* vertices, int num_vertices) {
     return fabs(area);
 }
 
-// Função principal
+// Funcao principal
 int main(){
     FILE *arquivo;
     int numVertices;
@@ -35,35 +35,34 @@ int main(){
         return 1;
     }
 
-    // Pede ao usuário o número de vértices
+    // Pede ao usuario o número de vertices
     printf("Coloque o numero de vertice do poligono: ");
     scanf("%d", &numVertices);
 
-    // Aloca memória para os vértices
+    // Aloca memoria para os vertices
     vertices = (Ponto *)malloc(numVertices * sizeof(Ponto));
     if(vertices == NULL){
-        printf("Erro de alocação de memoria.");
+        printf("Erro de alocacao de memoria.");
         return 1;
     }
 
-    // Pede ao usuário para inserir as coordenadas dos vértices e as escreve no arquivo
+    // Pede ao usuario para inserir as coordenadas dos vertices e as escreve no arquivo
     printf("Insira as coordenadas dos vertices (formato: x y):\n");
     for(int i = 0; i < numVertices; i++){
         printf("Vertice %d: ", i + 1);
         scanf("%lf %lf", &vertices[i].x, &vertices[i].y);
         fprintf(arquivo, "%.2lf %.2lf\n", vertices[i].x, vertices[i].y);
     }
-
-    // Fecha o arquivo
+    // Fechar o arquivo
     fclose(arquivo);
 
-    // Calcula a área do polígono
+    // Calcula a area do polígono
     double area = AreadoPoligono(vertices, numVertices);
 
     // Imprime o resultado
     printf("A area do poligono e: %.2f\n", area);
 
-    // Libera a memória alocada
+    // Libera a memoria alocada
     free(vertices);
 
     return 0;
