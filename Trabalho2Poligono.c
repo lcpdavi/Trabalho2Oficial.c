@@ -6,7 +6,7 @@
 typedef struct {
     double x;
     double y;
-} Ponto;
+}Ponto;
 // Calcular a area de um triângulo
 double AreadoTriangulo(Ponto A, Ponto B, Ponto C) {
     return fabs(0.5 * ((A.x*(B.y-C.y)) + (B.x*(C.y-A.y)) + (C.x*(A.y-B.y))));
